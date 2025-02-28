@@ -22,6 +22,9 @@ int main() {
    case 3:
        tienda();
        break;
+   case 6:
+       romano();
+       break;
    }
    return 0;
 }
@@ -125,7 +128,7 @@ int quadratica() {
     ac4 = a*c*4;
 
     raiz = b2-ac4;
-    printf("\n %d %f %f\n", b2, ac4, raiz);
+    //printf("\n %d %f %f\n", b2, ac4, raiz);
 
 
     if (((a+a) < 0) || (raiz < 0)) {
@@ -138,6 +141,7 @@ int quadratica() {
 
     printf("\n x1 = %d", x1);
     printf("\n x2 = %d", x2);
+    return 0;
 }
 
 void tienda() {
@@ -168,4 +172,170 @@ void tienda() {
         costo = costo * 0.95;
     }
     printf("Debes pagar %f", costo);
+}
+
+int romano(){
+    int num = 0, foo = 0;
+    char nRomano[13];
+
+    printf("Dame tu numero: ");
+    scanf("%d", &num);
+
+    if ((num > 3000) || (num < 1)) {
+        printf("/n Tu numero es invalido!");
+        return 0;
+    }
+
+    int millar = ((num - (num%1000))/1000);
+    int centenas = (((num-millar) - (num%100))/100);
+    int decenas = ((((num-millar)-centenas) - (num%10))/10);
+    int unos = ((((num-millar)-centenas)-unos) - (num%1));
+
+    printf("Tu numero es: ");
+    printf("%d", millar);
+    printf("%d", centenas);
+    printf("%d", decenas);
+    printf("%d", unos);
+
+    while (millar > 1) {
+        printf("%c", 'M');
+        foo++;
+        millar --;
+    }
+    switch (centenas) {
+    case 9:
+        printf("%c", 'C');
+        foo++;
+        printf("%c", 'M');
+        foo++;
+        break;
+    case 4:
+        printf("%c", 'C');
+        foo++;
+        printf("%c", 'D');
+        foo++;
+        break;
+    case 3:
+        printf("%c", 'C');
+        foo++;
+    case 2:
+        printf("%c", 'C');
+        foo++;
+    case 1:
+        printf("%c", 'C');
+        foo++;
+        break;
+    case 0:
+        break;
+    default:
+        printf("%c", 'D');
+        foo++;
+        centenas -= 5;
+        switch (centenas) {
+            case 3:
+                printf("%c", 'C');
+                foo++;
+            case 2:
+                printf("%c", 'C');
+                foo++;
+            case 1:
+                printf("%c", 'C');
+                foo++;
+                break;
+            default:
+                break;
+        }
+
+    }
+    switch (decenas) {
+    case 9:
+        printf("%c", 'X');
+        foo++;
+        printf("%c", 'C');
+        foo++;
+        break;
+    case 4:
+        printf("%c", 'X');
+        foo++;
+        printf("%c", 'L');
+        foo++;
+        break;
+    case 3:
+        printf("%c", 'X');
+        foo++;
+    case 2:
+        printf("%c", 'X');
+        foo++;
+    case 1:
+        printf("%c", 'X');
+        foo++;
+        break;
+    case 0:
+        break;
+    default:
+        printf("%c", 'L');
+        foo++;
+        decenas -= 5;
+        switch (decenas) {
+            case 3:
+                printf("%c", 'X');
+                foo++;
+            case 2:
+                printf("%c", 'X');
+                foo++;
+            case 1:
+                printf("%c", 'X');
+                foo++;
+                break;
+            default:
+                break;
+        }
+
+    }
+    switch (unos) {
+    case 9:
+        printf("%c", 'I');
+        foo++;
+        printf("%c", 'X');
+        foo++;
+        break;
+    case 4:
+        printf("%c", 'I');
+        foo++;
+        printf("%c", 'V');
+        foo++;
+        break;
+    case 3:
+        printf("%c", 'I');
+        foo++;
+    case 2:
+        printf("%c", 'I');
+        foo++;
+    case 1:
+        printf("%c", 'I');
+        foo++;
+        break;
+    case 0:
+        break;
+    default:
+        printf("%c", 'V');
+        foo++;
+        centenas -= 5;
+        switch (centenas) {
+            case 3:
+                printf("%c", 'I');
+                foo++;
+            case 2:
+                printf("%c", 'I');
+                foo++;
+            case 1:
+                printf("%c", 'I');
+                foo++;
+                break;
+            default:
+                break;
+        }
+
+    }
+    return 0;
 }
